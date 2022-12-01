@@ -1,0 +1,129 @@
+{
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "cl.exe easyx debug pre",
+			"command": "cl.exe",
+			"args": [
+				"kernel32.lib", //! REQUIRED LIB BELOW!
+				"gdi32.lib",
+				"winspool.lib",
+				"comdlg32.lib",
+				"advapi32.lib",
+				"shell32.lib",
+				"ole32.lib",
+				"oleaut32.lib",
+				"uuid.lib",
+				"odbc32.lib",
+				"odbccp32.lib",
+				"User32.lib", //! DEFAULT LIB INCLUDE ENDLINE
+				//"EasyXa.lib",     	 	 //# MUTED OBJECT REDIRECTION NO DECLARATION
+				//"EasyXw.lib",     	 	 //# MUTED OBJECT REDIRECTION NO DECLARATION
+				"/Zc:wchar_t", //TODO CHARSET CONVERT
+				"/Zc:forScope", //TODO ERROR IGNORE
+				"/Zc:inline", //TODO inline check
+				"/DWIN32", //# DEBUG OPT
+				"/D_DEBUG", //# DEBUG OPT
+				"/MDd", //# DEBUG OPT
+				"/D_UNICODE", //? Unicode for c++
+				"/DUNICODE", //? Unicode for MFC
+				"/Od", //? SET FOR MSVC STABILITY ANALYSIS
+				"/Zi", //* OUTPUT PALETTE BELOW
+				"/EHsc",
+				"/nologo",
+				"${fileDirname}\\*.cpp", //* SOURCE
+				"/Fd${workspaceFolder}\\Test\\${fileBasenameNoExtension}.pdb",
+				"/Fe${workspaceFolder}\\Test\\${fileBasenameNoExtension}.exe",
+				"-I", //? INCLUDE DOWN
+				"${workspaceFolder}\\Include",
+				"/I",
+				"D:\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include",
+				"/link",
+				"D:\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\lib\\x64\\*.lib"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": ["$msCompile"],
+			"group": "build",
+			"detail": "链接器: cl.exe"
+			//"dependsOn": ["msvc build"]
+		},
+		{
+			"type": "shell",
+			"label": "cl.exe easyx release pre",
+			"command": "cl.exe",
+			"args": [
+				"kernel32.lib", //! REQUIRED LIB BELOW!
+				"gdi32.lib",
+				"winspool.lib",
+				"comdlg32.lib",
+				"advapi32.lib",
+				"shell32.lib",
+				"ole32.lib",
+				"oleaut32.lib",
+				"uuid.lib",
+				"odbc32.lib",
+				"odbccp32.lib",
+				"User32.lib", //! DEFAULT LIB INCLUDE ENDLINE
+				//"EasyXa.lib",     	 	 //# MUTED OBJECT REDIRECTION NO DECLARATION
+				//"EasyXw.lib",     	 	 //# MUTED OBJECT REDIRECTION NO DECLARATION
+				"/Zc:wchar_t", //TODO CHARSET CONVERT
+				"/Zc:forScope", //TODO ERROR IGNORE
+				"/Zc:inline", //TODO inline check
+				"/DWIN32", //# DEBUG OPT
+				//"/D_DEBUG", 			 //# DEBUG OPT
+				"/MT", //# RELEASE OPT
+				"/D_UNICODE", //? Unicode for c++
+				"/DUNICODE", //? Unicode for MFC
+				"/O2", //? SET FOR MSVC SPEED ANALYSIS
+				"/Zi", //* OUTPUT PALETTE BELOW
+				"/EHsc",
+				"/nologo",
+				"${fileDirname}\\*.cpp", //* SOURCE
+				"/Fd${workspaceFolder}\\Test\\${fileBasenameNoExtension}.pdb",
+				"/Fe${workspaceFolder}\\Test\\${fileBasenameNoExtension}.exe",
+				"-I", //? INCLUDE DOWN
+				"${workspaceFolder}\\Include",
+				"/I",
+				"D:\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\include",
+				"/link",
+				"D:\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.29.30133\\atlmfc\\lib\\x64\\*.lib"
+			],
+			"options": {
+				"cwd": "${fileDirname}"
+			},
+			"problemMatcher": ["$msCompile"],
+			"group": "build",
+			"detail": "链接器: cl.exe"
+			//"dependsOn": ["msvc build"]
+		},
+		{
+			"type": "shell",
+			"label": "cl.exe easyx debug",
+			"command": "del src\\*.obj",
+			"args": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": ["$msCompile"],
+			"group": "build",
+			"detail": "msvc 2019x64 debug pre",
+			"dependsOn": ["cl.exe easyx debug pre"]
+		},
+		{
+			"type": "shell",
+			"label": "cl.exe easyx release",
+			"command": "del src\\*obj",
+			"args": [],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": ["$msCompile"],
+			"group": "build",
+			"detail": "msvc 2019x64 release pre",
+			"dependsOn": ["cl.exe easyx release pre"]
+		}
+	],
+	"version": "2.0.0"
+}

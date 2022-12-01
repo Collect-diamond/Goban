@@ -1,0 +1,5 @@
+general settings:
+Logo.T/F: 0
+Volume: 2
+AI: 1
+Theme: 1
